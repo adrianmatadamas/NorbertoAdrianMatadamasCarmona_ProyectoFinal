@@ -1,6 +1,3 @@
-# NorbertoAdrianMatadamasCarmona_ProyectoFinal
-Sistema de gestión de pacientes para una clínica dental
-
 # Sistema de Gestión de Pacientes - Clínica Dental
 
 Este es un sistema desarrollado en Django para la gestión de pacientes de una clínica dental. Proporciona operaciones básicas de CRUD (Crear, Leer, Actualizar, Eliminar) para manejar la información de los pacientes.
@@ -28,4 +25,3 @@ Este es un sistema desarrollado en Django para la gestión de pacientes de una c
 
 usuario: admin
 contraseña: 12345
-

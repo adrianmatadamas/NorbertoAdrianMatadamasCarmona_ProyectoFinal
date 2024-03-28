@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de pacientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .clinica-image {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        /* Estilos para el botón de inicio de sesión */
+        .login-btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .login-btn:hover {
+            background-color: #0056b3;
+        }
+        /* Estilos para alinear los botones horizontalmente */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container a,
+        .button-container button {
+            margin: 0 10px; /* Espacio entre los botones */
+            /* Estilos adicionales para mejorar la apariencia de los botones */
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+            cursor: pointer;
+        }
+        .button-container a:hover,
+        .button-container button:hover {
+            border-color: #007bff; /* Cambia el borde al pasar el cursor sobre los botones */
+        }
+        /* Estilos para el enlace "About Us" */
+        .about-us {
+            font-weight: bold;
+            color: #28a745; /* Color verde para resaltar */
+        }
+        .about-us:hover {
+            color: #218838; /* Color verde más oscuro al pasar el cursor */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de pacientes</h1>
+        <ul>
+            {% for cliente in clientes %}
+                <li>{{ cliente.nombre }} - {{ cliente.apellido }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'lista_clientes' %}">Lista de Clientes</a>
+        <a href="{% url 'nuevo_cliente' %}">Agregar Cliente</a>
+        {% for cliente in clientes %}
+            <a href="{% url 'editar_cliente' cliente.id %}">Editar {{ cliente.nombre }}</a>
+            <a href="{% url 'eliminar_cliente' cliente.id %}">Eliminar {{ cliente.nombre }}</a>
+        {% endfor %}
+        <a href="{% url 'about_us' %}" class="about-us">About Us</a>  <!-- Nuevo enlace para la página "About Us" -->
+        
+        <!-- Contenedor de los botones -->
+        <div class="button-container">
+            <a href="{% url 'login' %}" class="login-btn">Iniciar Sesión</a> <!-- Se aplica la clase login-btn -->
+            <form action="{% url 'logout' %}" method="post" id="logout-form">
+                {% csrf_token %}
+                <button type="submit">Cerrar Sesión</button>
+            </form>
+        </div>
+
+        <!-- Imágenes de la clínica dental -->
+        <img class="clinica-image" src="https://images.pexels.com/photos/305568/pexels-photo-305568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen de la clínica dental 1">
+        <img class="clinica-image" src="https://images.pexels.com/photos/305564/pexels-photo-305564.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen de la clínica dental 2">
+        <img class="clinica-image" src="https://images.pexels.com/photos/532786/pexels-photo-532786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen de la clínica dental 3">
+    </div>
+</body>
+</html>
